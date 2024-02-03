@@ -6,12 +6,21 @@ with open('space.txt', 'r', encoding='utf-8') as file:
     for i in data[1:]:
         machines.append(i.strip().split('*'))
 numbers_name = []
+numbers_num = []
 # перебираем информацию
 for machine in machines:
     number_ship = int(machine[0][5:8]) # номер коробля
     numbers_name.append([number_ship, machine[0]]) # заносим в список
-numbers_name.sort() # сортируем
-
-# Выводим первые 10 кораблей
-for elem in numbers_name[:10]:
-    print(elem[1])
+    numbers_num.append(number_ship)
+count = 0
+i = 0
+# сортировка пока не будет 10 кораблей
+while count < 10:
+    i += 1 # перебираем номера корабля пок ане встретяться 10 самых наименьших
+    if i in numbers_num:
+        count += 1
+        # берем корабль из списка под данным номером и выводим
+        for elem in numbers_name:
+            if elem[0] == i:
+                print(elem[0],elem[1])
+                break
